@@ -16,7 +16,7 @@ from email import encoders
 # In[2]:
 
 def main():
-    df = pd.read_excel("input_folder/orderdummy.xlsx",1)
+    df = pd.read_excel("input_folder/import.xlsx",1)
 
 
     # In[3]:
@@ -165,10 +165,10 @@ def main():
         df["Type"] = "Stock"
         df["FixedAssetType"] = ""
         df["CostingMethod"] = "FIFO"
-        df[['Length','Width','Height']] = df["size"].str.split(pd.read_excel("input_folder/orderdummy.xlsx",2).at[0,'Dimension Delimiter'],expand=True)
+        df[['Length','Width','Height']] = df["size"].str.split(pd.read_excel("input_folder/import.xlsx",2).at[0,'Dimension Delimiter'],expand=True)
         df["Weight"] = df["weight"]
         df["WeightUnits"] = "kg"
-        df["DimensionUnits"] = pd.read_excel("input_folder/orderdummy.xlsx",2).at[0,'Dimension Unit']
+        df["DimensionUnits"] = pd.read_excel("input_folder/import.xlsx",2).at[0,'Dimension Unit']
         df["Barcode"] = ""
         df["MinimumBeforeReorder"] = 0
         df["ReorderQuantity"] = 0
