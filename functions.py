@@ -236,5 +236,5 @@ def main():
         df["QuantityToProduce"] = 1
 
         print("wrote to output")
-        df.drop(df.iloc[:, :18], inplace = True, axis = 1)
+        df = df.loc[:, 'ProductCode':]
         df.to_excel("output_folder/output.xlsx", index = False)
