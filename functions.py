@@ -70,12 +70,13 @@ def main():
 
     missing_columns = []
     nan_df = df[df.isna().any(axis=1)]
+    print(df.isna().any(axis=1))
     nan_df.to_excel("error_folder/missing_data.xlsx", index = False)
     print(nan_df.empty)
 
     def criteria_checker():
 
-        required_columns = ["name","size","cat","qty","sku","pt1","pt2","pt3","pt4"]
+        required_columns = ["name","size","cat","qty","sku"]
         #missing_columns = []
 
 
@@ -94,7 +95,7 @@ def main():
         #Nan check
         if not nan_df.empty:
             mail_sender("nan")
-            print("Missing Column")
+            print("Missing Entry")
             return False
 
         #All conditions met return True
@@ -166,7 +167,7 @@ def main():
         df["FixedAssetType"] = ""
         df["CostingMethod"] = "FIFO"
         df[['Length','Width','Height']] = df["size"].str.split(pd.read_excel("input_folder/import.xlsx",2).at[0,'Dimension Delimiter'],expand=True)
-        df["Weight"] = df["weight"]
+        df["Weight"] = ""
         df["WeightUnits"] = "kg"
         df["DimensionUnits"] = pd.read_excel("input_folder/import.xlsx",2).at[0,'Dimension Unit']
         df["Barcode"] = ""
@@ -177,10 +178,10 @@ def main():
         df["SupplierProductCode"] = df["sc"]
         df["SupplierProductName"] = df["sn"]
         df["SupplierFixedPrice"] = 0
-        df["PriceTier1"] = df["pt1"]
-        df["PriceTier2"] = df["pt2"]
-        df["PriceTier3"] = df["pt3"]
-        df["PriceTier4"] = df["pt4"]
+        df["PriceTier1"] = ""
+        df["PriceTier2"] = ""
+        df["PriceTier3"] = ""
+        df["PriceTier4"] = ""
         df["PriceTier5"] = 0
         df["PriceTier6"] = 0
         df["PriceTier7"] = 0
