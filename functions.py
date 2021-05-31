@@ -235,6 +235,27 @@ def main():
         df["MakeToOrderBom"] = "No"
         df["QuantityToProduce"] = 1
 
+        #Reordeing columns
+
+        cols = df.columns.tolist()
+        column_to_move = "Description"
+        new_position = 78
+
+        cols.insert(new_position, cols.pop(cols.index(column_to_move)))
+
+        df = df[cols]
+
+        column_to_move = "ProductAttributeSet"
+        new_position = 53
+
+        cols.insert(new_position, cols.pop(cols.index(column_to_move)))
+
+        df = df[cols]
+
+
         print("wrote to output")
         df = df.loc[:, 'ProductCode':]
+
+        #Writing to excel and csv
         df.to_excel("output_folder/output.xlsx", index = False)
+        df.to_csv("output_folder/output.csv", index = False)
