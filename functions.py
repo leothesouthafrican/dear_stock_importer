@@ -252,10 +252,9 @@ def main():
 
         df = df[cols]
 
-
         print("wrote to output")
         df = df.loc[:, 'ProductCode':]
 
         #Writing to excel and csv
         df.to_excel("output_folder/output.xlsx", index = False)
-        df.to_csv("output_folder/output.csv", index = False)
+        df.to_csv("output_folder/output.csv", index = False, sep = ",")
